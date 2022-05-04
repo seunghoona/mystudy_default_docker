@@ -1,0 +1,21 @@
+version: '3'
+services:
+  spring-app:
+    build: ./
+    container_name: spring-app
+    image: "seunghoona/deploy_test:latest"
+    ports:
+     - "8080:8080"
+    volumes:
+      - /var/log/app:/var/log/app
+    restart: always
+  nginx:
+      container_name: nginx
+      build: /nginx/
+      image: "nginx:latest"
+      ports:
+       - "80:80"
+      volumes:
+       - /var/log/nginx:/var/log/nginx
+      depends_on:
+       - spring-app
