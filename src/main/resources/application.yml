@@ -1,3 +1,30 @@
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+    import: address.yml
+
+test:
+  application:
+    name: "prod"
+
 server:
-  http2:
-    enabled: true
+  port: 90901
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "dev"
+    import: address.yml
+
+server:
+  port: 9090
+test:
+  application:
+    name: "dev"
+
+

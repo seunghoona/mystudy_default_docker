@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+
+address:
+  name: "운영집"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "dev"
+
+address:
+  name: "개발집"

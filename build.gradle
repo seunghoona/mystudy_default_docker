@@ -1,13 +1,26 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.epages:restdocs-api-spec-gradle-plugin:0.16.0"
+    }
+}
+
 plugins {
     id 'org.springframework.boot' version '2.6.7'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-
+    id 'com.epages.restdocs-api-spec' version '0.16.0'
     id 'java'
 }
 
 group = 'com.test'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+
+apply plugin: 'com.epages.restdocs-api-spec'
 
 configurations {
     compileOnly {
@@ -24,6 +37,15 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'com.epages:restdocs-api-spec-mockmvc:0.16.2'
+    testImplementation 'org.mockito:mockito-inline:2.13.0'
+}
+
+
+postman {
+    title = 'My API'
+    version = '0.1.0'
+    baseUrl = 'https://localhost:8080'
 }
 
 tasks.named('test') {

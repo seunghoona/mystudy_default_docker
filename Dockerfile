@@ -12,7 +12,7 @@ COPY --from=builder /deploy/snapshot-dependencies /home
 COPY --from=builder /deploy/application /home
 EXPOSE 8080
 WORKDIR /home
-ENTRYPOINT ["java","org.springframework.boot.loader.JarLauncher"]
+ENTRYPOINT ["java", "-Dspring.profiles.active=dev", "org.springframework.boot.loader.JarLauncher"]
 
 
 
